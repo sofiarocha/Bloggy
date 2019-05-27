@@ -8,6 +8,9 @@ const sassMiddleware = require('node-sass-middleware');
 //config mongo db
 require('./db/mongoose');
 
+//register models
+require('./models/Post');
+
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 

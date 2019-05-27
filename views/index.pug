@@ -1,6 +1,12 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  p Hello #{name}
+  a(href='/post/new') New Post
+  
+  ul
+    each post in posts
+      li
+        a(href=`/post/${post._id}`)
+          h3= post.title
+          p= post.createdAt
+          p= post.content
