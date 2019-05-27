@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  form(method='POST' action=`/post/${_id}/save`)
+    label
+    input(type="text" name="title" value=`${title}`)
+    textarea(name="content", cols="30", rows="10") #{content}
+    button(type='submit') Save

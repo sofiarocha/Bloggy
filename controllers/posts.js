@@ -24,7 +24,6 @@ const postNew = (req, res, next) => {
 };
 
 const createPost = (req, res, next) => {
-    console.log(req.body);
     const newPost = new Post({
         title: req.body.title,
         content: req.body.content,
@@ -37,8 +36,31 @@ const createPost = (req, res, next) => {
         res.redirect(`/post/${savedPost._id}`);
         console.log(savedPost);
     });
-
 };
 
+const postEdit = (req, res, next) => {
+    Post.findById(req.params.id, (err, editedPost) => {
+        if(err) {
+            res.sendStatus(500, err);
+        }
+        res.render('edit-post', editedPost);
+    });
+}
 
-module.exports = { postsIndex, postShow, postNew, createPost }
+const postSave = (req, res, next) => {
+    Post.findById(req.params.id, (err, foundPost) => {
+        foundPost.title = req.body.title;
+        foundPost.content = req.body.content;
+
+        foundPost.save((err,savedPost) => {
+            if(err) {
+                res.sendStatus(500, err);
+            }
+            res.redirect(`/post/${savedPost._id}`);
+            console.log("Post updated");
+        });
+    });
+}
+
+
+module.exports = { postsIndex, postShow, postNew, createPost, postEdit, postSave }

@@ -3,4 +3,7 @@ extends layout
 block content
   h1= title
   p= createdAt
+  small= `Modified at ${updatedAt}`
   p= content
+  a(href=`/post/${_id}/edit`)
+    button(type='button') Edit
