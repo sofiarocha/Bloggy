@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1 New Post
+  p Create a new post
+  form(method='POST' action='/post/new')
+    label
+    input(type="text" name="title" placeholder="Enter a title")
+    textarea(name="content", cols="30", rows="10" placeholder="Content here...")
+    button(type='submit') Publish
